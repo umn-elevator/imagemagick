@@ -41,5 +41,5 @@ COPY        --from=build /usr/local/etc /usr/local/etc
 
 MAINTAINER  Colin McFadden <mcfa0086@umn.edu>
 
-CMD         ["--help"]
+# CMD         ["--help"]
 # ENTRYPOINT  [""]
