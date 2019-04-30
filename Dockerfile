@@ -40,6 +40,3 @@ COPY        --from=build /usr/local/lib /usr/local/lib
 COPY        --from=build /usr/local/etc /usr/local/etc
 
 MAINTAINER  Colin McFadden <mcfa0086@umn.edu>
-
-# CMD         ["--help"]
-# ENTRYPOINT  [""]
