@@ -32,7 +32,7 @@ RUN     apt-get -yqq update && \
         rm -rf /var/lib/apt/lists/*
 
 RUN     add-apt-repository ppa:strukturag/libheif && \
-        apt-get -y install --no-install-recommends libjbig2dec0 libde265-0 libheif1 libpng16-16 libopenjp2-7 libjbig0 libtiff5 libjpeg-turbo8 libwebp6 libgomp1 libwebpmux3 libbz2-1.0 && \
+    apt-get -y install --no-install-recommends libjbig2dec0 libde265-0 libheif1 libpng16-16 libopenjp2-7 libjbig0 libtiff5 libjpeg-turbo8 libwebp6 libgomp1 libwebpmux3 libbz2-1.0 ghostscript && \
         rm -rf /var/lib/apt/lists/*
 
 COPY        --from=build /usr/local/bin /usr/local/bin
