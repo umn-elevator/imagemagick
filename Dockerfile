@@ -41,3 +41,4 @@ COPY        --from=build /usr/local/etc /usr/local/etc
 
 MAINTAINER  Colin McFadden <mcfa0086@umn.edu>
 ENV     LD_LIBRARY_PATH=/usr/local/lib
+ENV     MAGICK_TMPDIR=/scratch
