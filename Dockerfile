@@ -11,14 +11,14 @@ RUN     BUILD_PACKAGES='curl unzip make autoconf automake cmake g++ gcc build-es
         add-apt-repository ppa:strukturag/libheif && \
         apt-get -yqq update && \
         apt-get --no-install-recommends -yqq install $BUILD_PACKAGES && \
-        apt-get -y install --no-install-recommends libde265-dev libheif1 libheif-dev libopenjp2-7-dev libjbig-dev libtiff5-dev libpng16-16 libpng-dev libjpeg-turbo8 libjpeg-turbo8-dev libjbig2dec0 libwebp6 libwebp-dev libgomp1 libwebpmux3 pkg-config libbz2-dev && \
+    apt-get -y install --no-install-recommends libde265-dev libheif1 libheif-dev libopenjp2-7-dev libjbig-dev libtiff5-dev libpng16-16 libpng-dev libjpeg-turbo8 libjpeg-turbo8-dev libjbig2dec0 libwebp6 libwebp-dev libgomp1 libwebpmux3 pkg-config libbz2-dev libxml2-dev  && \
         DIR=/tmp/imagemagick && \
         mkdir -p ${DIR} && \
         cd ${DIR} && \
         curl -L -o ${DIR}/7.0.8-39.tar.gz https://github.com/ImageMagick/ImageMagick/archive/7.0.8-39.tar.gz && \
         tar -zxvf ${DIR}/7.0.8-39.tar.gz  && \
         cd ${DIR}/ImageMagick-7.0.8-39 && \
-        ./configure --with-heic && \
+    ./configure --with-heic --with-xml=yes && \
         make -j4 && \
         make install && \
         rm -rf ${DIR}
@@ -32,7 +32,7 @@ RUN     apt-get -yqq update && \
         rm -rf /var/lib/apt/lists/*
 
 RUN     add-apt-repository ppa:strukturag/libheif && \
-    apt-get -y install --no-install-recommends libjbig2dec0 libde265-0 libheif1 libpng16-16 libopenjp2-7 libjbig0 libtiff5 libjpeg-turbo8 libwebp6 libgomp1 libwebpmux3 libbz2-1.0 ghostscript && \
+    apt-get -y install --no-install-recommends libjbig2dec0 libde265-0 libheif1 libpng16-16 libopenjp2-7 libjbig0 libtiff5 libjpeg-turbo8 libgs-dev libwebp6 libgomp1 libwebpmux3 libbz2-1.0 libxml2-dev && \
         rm -rf /var/lib/apt/lists/*
 
 COPY        --from=build /usr/local/bin /usr/local/bin
