@@ -9,15 +9,16 @@ RUN     apt-get -yqq update && \
 
 RUN     BUILD_PACKAGES='curl unzip make autoconf automake cmake g++ gcc build-essential' && \
         add-apt-repository ppa:strukturag/libheif && \
+        add-apt-repository ppa:strukturag/libde265 && \
         apt-get -yqq update && \
         apt-get --no-install-recommends -yqq install $BUILD_PACKAGES && \
-    apt-get -y install --no-install-recommends libde265-dev libheif1 libheif-dev libopenjp2-7-dev libjbig-dev libtiff5-dev libpng16-16 libpng-dev libjpeg-turbo8 libjpeg-turbo8-dev libjbig2dec0 libwebp6 libwebp-dev libgomp1 libwebpmux3 pkg-config libbz2-dev libxml2-dev ghostscript && \
+    apt-get -y install --no-install-recommends libde265-dev libde265-0 libheif1 libheif-dev libopenjp2-7-dev libjbig-dev libtiff5-dev libpng16-16 libpng-dev libjpeg-turbo8 libjpeg-turbo8-dev libjbig2dec0 libwebp6 libwebp-dev libgomp1 libwebpmux3 pkg-config libbz2-dev libxml2-dev ghostscript && \
         DIR=/tmp/imagemagick && \
         mkdir -p ${DIR} && \
         cd ${DIR} && \
-        curl -L -o ${DIR}/7.0.8-39.tar.gz https://github.com/ImageMagick/ImageMagick/archive/7.0.8-39.tar.gz && \
-        tar -zxvf ${DIR}/7.0.8-39.tar.gz  && \
-        cd ${DIR}/ImageMagick-7.0.8-39 && \
+        curl -L -o ${DIR}/7.0.11-10.tar.gz https://github.com/ImageMagick/ImageMagick/archive/7.0.11-10.tar.gz && \
+        tar -zxvf ${DIR}/7.0.11-10.tar.gz  && \
+        cd ${DIR}/ImageMagick-7.0.11-10 && \
     ./configure --with-heic --with-xml=yes && \
         make -j4 && \
         make install && \
@@ -32,7 +33,8 @@ RUN     apt-get -yqq update && \
         rm -rf /var/lib/apt/lists/*
 
 RUN     add-apt-repository ppa:strukturag/libheif && \
-    apt-get -y install --no-install-recommends libjbig2dec0 libde265-0 libheif1 libpng16-16 libopenjp2-7 libjbig0 libtiff5 libjpeg-turbo8 libgs-dev ghostscript libwebp6 libgomp1 libwebpmux3 libbz2-1.0 libxml2-dev && \
+        add-apt-repository ppa:strukturag/libde265 && \
+        apt-get -y install --no-install-recommends libjbig2dec0 libde265-0 libheif1 libpng16-16 libopenjp2-7 libjbig0 libtiff5 libjpeg-turbo8 libgs-dev ghostscript libwebp6 libgomp1 libwebpmux3 libbz2-1.0 libwebpdemux2 libxml2-dev && \
         rm -rf /var/lib/apt/lists/*
 
 COPY        --from=build /usr/local/bin /usr/local/bin
